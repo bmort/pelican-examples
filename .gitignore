@@ -1,0 +1,12 @@
+
+build
+
+.cproject
+.project
+.settings
+.DS_Store
+
+*/.cproject
+*/.project
+*/.settings
+*/.DS_Store
