@@ -36,7 +36,7 @@ int main(int argc, char** argv)
             "</ServiceDataEmulator>").arg(interval * 2)
     );
     EmulatorDriver driver2(new ServiceDataEmulator(service_config));
-    QObject::connect(&driver2, SIGNAL(finished()), qApp, SLOT(quit()));
+    QObject::connect(&driver2, SIGNAL(finished()), &app, SLOT(quit()));
 
     return app.exec();
 }
