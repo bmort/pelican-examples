@@ -20,7 +20,7 @@ class StreamData : public pelican::DataBlob
 };
 
 namespace pelican {
-PELICAN_DECLARE_DATABLOB(StreamData);
+PELICAN_DECLARE_DATABLOB(StreamData)
 }
 
 #endif /* STREAM_DATA_HPP_ */

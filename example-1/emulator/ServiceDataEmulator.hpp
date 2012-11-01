@@ -11,6 +11,7 @@ class ServiceDataEmulator : public pelican::AbstractUdpEmulator
         ~ServiceDataEmulator();
         void getPacketData(char*& ptr, unsigned long& size);
         unsigned long interval();
+        void emulationFinished();
 
     private:
         unsigned long packetCounter_;

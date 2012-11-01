@@ -20,7 +20,7 @@
             </StreamDataChunker>
             <ServiceDataChunker>
                 <!-- packet of 1 float + 32 byte header -->
-                <data type="ServiceData" chunkSize="36" />
+                <data type="ServiceData" chunkSize="1632" />
                 <connection host="127.0.0.1" port="2002" />
             </ServiceDataChunker>
         </chunkers>

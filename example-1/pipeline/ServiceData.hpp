@@ -16,7 +16,7 @@ class ServiceData : public pelican::DataBlob
 };
 
 namespace pelican {
-PELICAN_DECLARE_DATABLOB(ServiceData);
+PELICAN_DECLARE_DATABLOB(ServiceData)
 }
 
 #endif /* SERVICE_DATA_HPP_ */

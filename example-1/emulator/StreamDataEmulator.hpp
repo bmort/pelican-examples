@@ -13,11 +13,11 @@ class StreamDataEmulator : public pelican::AbstractUdpEmulator
         unsigned long interval();
 
     private:
-        unsigned long packetCounter_;
-        unsigned long long totalSamples_;
-        unsigned long numSamples_;
-        unsigned long packetInterval_;
-        unsigned long signalPeriod_;
+        quint32 packetCounter_;
+        quint32 totalSamples_;
+        quint32 numSamples_;
+        quint32 packetInterval_;
+        quint32 signalPeriod_;
         QByteArray packet_;
 };
 

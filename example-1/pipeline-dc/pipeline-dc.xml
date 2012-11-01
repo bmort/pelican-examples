@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pelican>
+
+<configuration version="1.0">
+    <pipeline>
+        <buffers>
+            <StreamData>
+                <buffer maxSize="100000" maxChunkSize="100000" />
+            </StreamData>
+            <ServiceData>
+                <buffer maxSize="100000" maxChunkSize="100000" />
+            </ServiceData>
+        </buffers>
+        <chunkers>
+            <StreamDataChunker>
+                <connection host="127.0.0.1" port="2001" />
+                <data type="StreamData" packetSize="72" packets="1" /> 
+            </StreamDataChunker>
+            <ServiceDataChunker>
+                <connection host="127.0.0.1" port="2002" />
+                <data type="ServiceData" chunkSize="36" />
+            </ServiceDataChunker>
+        </chunkers>
+        <clients>
+            <DirectDataClient>
+                <data type="StreamData" adapter="StreamDataAdapter" />
+                <data type="ServiceData" adapter="ServiceDataAdapter" />
+            </DirectDataClient>
+        </clients>
+        <adapters>
+            <StreamDataAdapter>
+                <packet samples="256" />
+            </StreamDataAdapter>
+            <ServiceDataAdapter>
+                <!-- Currently has no settings -->
+            </ServiceDataAdapter>
+        </adapters>
+    </pipeline>
+</configuration>

@@ -7,6 +7,7 @@
 
 #include <QtCore/QCoreApplication>
 #include <QtCore/QString>
+#include <QtCore/QObject>
 
 using pelican::ConfigNode;
 using pelican::EmulatorDriver;
@@ -32,10 +33,10 @@ int main(int argc, char** argv)
             "<ServiceDataEmulator>"
             "    <packet interval=\"%1\" />"
             "    <connection host=\"127.0.0.1\" port=\"2002\" />"
-            "</ServiceDataEmulator>").arg(interval * 4)
+            "</ServiceDataEmulator>").arg(interval * 2)
     );
     EmulatorDriver driver2(new ServiceDataEmulator(service_config));
-
+    QObject::connect(&driver2, SIGNAL(finished()), qApp, SLOT(quit()));
 
     return app.exec();
 }

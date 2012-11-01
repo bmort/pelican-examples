@@ -20,7 +20,7 @@ void Pipeline::init()
 void Pipeline::run(QHash<QString, pelican::DataBlob*>& data)
 {
     cout << "Pipeline::run() start. " << endl;
-    StreamData* stream = (StreamData*) data["StreamData"];
+//    StreamData* stream = (StreamData*) data["StreamData"];
     ServiceData* service = (ServiceData*) data["ServiceData"];
     cout << " Service data value = " << service->value() << endl;
 

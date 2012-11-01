@@ -11,7 +11,7 @@ ServiceDataEmulator::ServiceDataEmulator(const pelican::ConfigNode& config)
     packetInterval_ = config.getOption("packet", "interval", "10000").toULong();
 
     // Set the packet size in bytes (+32 for the header).
-    packet_.resize(1 * sizeof(float) + 32);
+    packet_.resize(400 * sizeof(float) + 32);
 
     // Set constant parts of the packet header data
     char* ptr = packet_.data();
@@ -26,8 +26,20 @@ ServiceDataEmulator::~ServiceDataEmulator()
 {
 }
 
+void ServiceDataEmulator::emulationFinished()
+{
+    std::cout << "ServiceDataEmulator::emulationFinished()" << std::endl;
+}
+
 void ServiceDataEmulator::getPacketData(char*& ptr, unsigned long& size)
 {
+    if (packetCounter_ >= 1)
+    {
+        ptr = 0;
+        size = 0;
+        return;
+    }
+
     // Set pointer to the output data.
     ptr  = packet_.data();
     size = packet_.size();
@@ -38,8 +50,10 @@ void ServiceDataEmulator::getPacketData(char*& ptr, unsigned long& size)
     // Fill the packet data.
     char* data = ptr + 32;
     float value = 1 + packetCounter_ % 5;
-    reinterpret_cast<float*>(data)[0] = value;
-
+    for (int i = 0; i < 400; ++i)
+    {
+        reinterpret_cast<float*>(data)[i] = value;
+    }
     std::cout << "Service value: " << value << std::endl;
 
     ++packetCounter_;

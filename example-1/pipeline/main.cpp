@@ -26,7 +26,6 @@ int main(int argc, char** argv)
         pApp.registerPipeline(new Pipeline);
 
         pApp.setDataClient("PelicanServerClient");
-
         pApp.start();
     }
     catch (const QString& err)

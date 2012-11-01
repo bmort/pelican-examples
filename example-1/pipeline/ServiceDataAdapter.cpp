@@ -14,13 +14,10 @@ void ServiceDataAdapter::deserialise(QIODevice* device)
     std::cout << "ServiceDataAdapter::deserialise()" << std::endl;
     ServiceData* blob = (ServiceData*) dataBlob();
 
-    unsigned packets = chunkSize() / packetSize_;
-
     char headerData[headerSize_];
 
     float data;
 
-    int bytesRead = 0;
     while (device->bytesAvailable() < packetSize_)
         device->waitForReadyRead(-1);
 
