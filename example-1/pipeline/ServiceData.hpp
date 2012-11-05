@@ -7,12 +7,17 @@
 class ServiceData : public pelican::DataBlob
 {
     public:
-        ServiceData();
-        float value() const;
-        void setValue(float value);
+        ServiceData() : DataBlob("ServiceData") { }
+        float value(int idx = 0) const { return values_[idx]; }
+        void resize(int n) { values_.resize(n); }
+        float* ptr() { return values_.data(); }
+        const float* ptr() const { return values_.data(); }
+        QVector<float>& values() { return values_; }
+        const QVector<float>& values() const { return values_; }
+        int size() const { return values_.size(); }
 
     private:
-        float value_;
+        QVector<float> values_;
 };
 
 namespace pelican {

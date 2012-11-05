@@ -7,12 +7,13 @@ StreamDataEmulator::StreamDataEmulator(const pelican::ConfigNode& config)
 : AbstractUdpEmulator(config), packetCounter_(0), totalSamples_(0)
 {
     // Load options (with defaults).
-    numSamples_     = config.getOption("packet", "samples", "256").toULong();
-    packetInterval_ = config.getOption("packet", "interval", "2560").toULong();
-    signalPeriod_   = config.getOption("signal", "period", "20").toULong();
+    numSamples_     = config.getOption("packet", "samples", "10").toULong();
+    packetInterval_ = config.getOption("packet", "interval", "10000").toULong();
+    dataPeriod_     = config.getOption("data", "period", "100").toULong();
+    nPackets_       = config.getOption("data", "numPackets", "-1").toInt();
 
     // Set the packet size in bytes (+32 for the header).
-    packet_.resize(numSamples_ * sizeof(float) + 32);
+    packet_.resize(numSamples_ * sizeof(float) + sizeof(32));
 
     // Set constant parts of the packet header data
     char* ptr = packet_.data();
@@ -26,10 +27,9 @@ StreamDataEmulator::~StreamDataEmulator()
 {
 }
 
+
 void StreamDataEmulator::getPacketData(char*& ptr, unsigned long& size)
 {
-//    std::cout << "SignalEmulator::getPacketData()" << std::endl;
-
     // Set pointer to the output data.
     ptr  = packet_.data();
     size = packet_.size();
@@ -41,14 +41,25 @@ void StreamDataEmulator::getPacketData(char*& ptr, unsigned long& size)
     char* data = ptr + 32;
     for (int i = 0; i < numSamples_; ++i)
     {
-        float value = (totalSamples_ + i) % signalPeriod_;
+        float value = (totalSamples_ + i) % dataPeriod_;
         reinterpret_cast<float*>(data)[i] = value;
-        std::cout << "stream value: " << value << std::endl;
-
     }
+
+    qDebug() << "Stream: Bytes sent = " << size << " (total = "
+             << size * packetCounter_ << ")";
 
     ++packetCounter_;
     totalSamples_ += numSamples_;
+}
+
+void StreamDataEmulator::emulationFinished()
+{
+    qDebug() << "StreamDataEmulator::emulationFinished()";
+}
+
+int StreamDataEmulator::nPackets()
+{
+    return nPackets_;
 }
 
 unsigned long StreamDataEmulator::interval()

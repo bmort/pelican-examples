@@ -14,13 +14,12 @@
 
         <chunkers>
             <StreamDataChunker>
-                <!-- packet of 10 floats + 32 byte header -->
-                <data type="StreamData" packetSize="72" packets="1" /> 
+                <!-- packet of n floats + 32 byte header -->
+                <data type="StreamData" packetSize="4032" packets="5" /> 
                 <connection host="127.0.0.1" port="2001" />
             </StreamDataChunker>
             <ServiceDataChunker>
-                <!-- packet of 1 float + 32 byte header -->
-                <data type="ServiceData" chunkSize="1632" />
+                <data type="ServiceData" packetSize="800" packets="1" />
                 <connection host="127.0.0.1" port="2002" />
             </ServiceDataChunker>
         </chunkers>

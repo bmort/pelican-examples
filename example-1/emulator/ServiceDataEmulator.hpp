@@ -10,13 +10,17 @@ class ServiceDataEmulator : public pelican::AbstractUdpEmulator
         ServiceDataEmulator(const pelican::ConfigNode& configNode);
         ~ServiceDataEmulator();
         void getPacketData(char*& ptr, unsigned long& size);
-        unsigned long interval();
         void emulationFinished();
+        unsigned long interval();
+        int nPackets();
 
     private:
         unsigned long packetCounter_;
         unsigned long packetInterval_;
         QByteArray packet_;
+        int numSamples_;
+        int numPackets_;
+        int dataPeriod_;
 };
 
 #endif // SERVICE_DATA_EMULATOR_HPP_

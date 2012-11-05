@@ -48,7 +48,6 @@ target_link_libraries(${name}
 set(name pipeline)
 add_executable(${name} 
     pipeline/main.cpp
-    pipeline/ServiceData.cpp
     pipeline/ServiceDataAdapter.cpp
     pipeline/StreamData.cpp
     pipeline/StreamDataAdapter.cpp
@@ -67,7 +66,6 @@ add_executable(${name}
     pipeline-dc/DirectDataClient.cpp
     server/StreamDataChunker.cpp
     server/ServiceDataChunker.cpp
-    pipeline/ServiceData.cpp
     pipeline/ServiceDataAdapter.cpp
     pipeline/StreamData.cpp
     pipeline/StreamDataAdapter.cpp

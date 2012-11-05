@@ -18,6 +18,7 @@ class Pipeline : public pelican::AbstractPipeline
         SignalAmplifier* amplifier_;
         StreamData* dataOut_;
         ServiceData* gains_;
+        quint32 count_;
 };
 
 #endif /* PIPELINE_HPP_ */

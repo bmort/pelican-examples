@@ -15,7 +15,8 @@ class ServiceDataChunker : public pelican::AbstractChunker
         virtual void next(QIODevice*);
 
     private:
-        quint64 chunkSize_;
+        quint64 packetSize_;
+        int packets_;
         quint64 bytesRead_;
 };
 

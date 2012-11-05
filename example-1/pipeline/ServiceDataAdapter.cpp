@@ -2,30 +2,25 @@
 #include "ServiceData.hpp"
 #include <iostream>
 
+using namespace std;
 
 ServiceDataAdapter::ServiceDataAdapter(const pelican::ConfigNode& config)
 : AbstractServiceAdapter(config)
 {
-    packetSize_ = headerSize_ + 4;
+    numSamples_ = config.getOption("chunk", "numSamples").toInt();
 }
 
 void ServiceDataAdapter::deserialise(QIODevice* device)
 {
-    std::cout << "ServiceDataAdapter::deserialise()" << std::endl;
-    ServiceData* blob = (ServiceData*) dataBlob();
+    ServiceData* blob = (ServiceData*)dataBlob();
+    blob->resize(numSamples_);
+    float* data = blob->ptr();
 
-    char headerData[headerSize_];
+    size_t chunkSize = numSamples_ * sizeof(float);
 
-    float data;
-
-    while (device->bytesAvailable() < packetSize_)
+    while (device->bytesAvailable() < chunkSize)
         device->waitForReadyRead(-1);
 
-    // Read the packet header from the device and dump it.
-    device->read(headerData, headerSize_);
-
     // Read the data into the data blob.
-    device->read(reinterpret_cast<char*>(&data), packetSize_ - headerSize_);
-
-    blob->setValue(data);
+    device->read(reinterpret_cast<char*>(data), chunkSize);
 }

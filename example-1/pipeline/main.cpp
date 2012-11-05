@@ -9,9 +9,26 @@
 using namespace std;
 using pelican::PipelineApplication;
 
+struct CleanExit
+{
+  CleanExit()
+  {
+    signal(SIGINT, &CleanExit::exitQt);
+    signal(SIGTERM, &CleanExit::exitQt);
+    signal(SIGKILL, &CleanExit::exitQt);
+  }
+
+  static void exitQt(int signal)
+  {
+    QCoreApplication::exit(signal);
+  }
+};
+
+
 int main(int argc, char** argv)
 {
     QCoreApplication app(argc, argv);
+    CleanExit cleanExit;
 
     if (argc != 2)
     {
@@ -22,9 +39,7 @@ int main(int argc, char** argv)
     try
     {
         PipelineApplication pApp(argc, argv);
-
         pApp.registerPipeline(new Pipeline);
-
         pApp.setDataClient("PelicanServerClient");
         pApp.start();
     }

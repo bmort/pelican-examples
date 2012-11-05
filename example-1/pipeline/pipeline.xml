@@ -13,10 +13,10 @@
 
         <adapters>
             <StreamDataAdapter>
-                <packet samples="256" />
+                <packet numSamples="1000" />
             </StreamDataAdapter>
             <ServiceDataAdapter>
-                <!-- Currently has no settings -->
+                <chunk numSamples="200" />
             </ServiceDataAdapter>
         </adapters>
 

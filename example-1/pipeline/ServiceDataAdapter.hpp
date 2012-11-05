@@ -5,13 +5,11 @@
 
 class ServiceDataAdapter : public pelican::AbstractServiceAdapter
 {
-    public:
-        ServiceDataAdapter(const pelican::ConfigNode&);
-        void deserialise(QIODevice*);
-
-    private:
-        static const unsigned headerSize_ = 32;
-        unsigned packetSize_;
+public:
+    ServiceDataAdapter(const pelican::ConfigNode&);
+    void deserialise(QIODevice*);
+private:
+    int numSamples_;
 };
 
 namespace pelican {

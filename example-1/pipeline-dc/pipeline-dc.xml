@@ -13,12 +13,12 @@
         </buffers>
         <chunkers>
             <StreamDataChunker>
+                <data type="StreamData" packetSize="4032" packets="5" /> 
                 <connection host="127.0.0.1" port="2001" />
-                <data type="StreamData" packetSize="72" packets="1" /> 
             </StreamDataChunker>
             <ServiceDataChunker>
+                <data type="ServiceData" packetSize="800" packets="1" />
                 <connection host="127.0.0.1" port="2002" />
-                <data type="ServiceData" chunkSize="36" />
             </ServiceDataChunker>
         </chunkers>
         <clients>
@@ -29,10 +29,10 @@
         </clients>
         <adapters>
             <StreamDataAdapter>
-                <packet samples="256" />
+                <packet numSamples="1000" />
             </StreamDataAdapter>
             <ServiceDataAdapter>
-                <!-- Currently has no settings -->
+                <chunk numSamples="200" />
             </ServiceDataAdapter>
         </adapters>
     </pipeline>
