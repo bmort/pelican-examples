@@ -1,0 +1,23 @@
+
+
+* When emulators finish, data remaining in data buffers is not sent to pipelines
+
+
+
+Issues / TODO
+=============
+- Sort out Github issues and move some of these there.
+- Pelican release version numbers
+- XML parsing badly implemented
+    - basic checks on what groups are required
+    - this could be a separate tool
+    - need to define a clear set of rules (doc these)
+- getNext spam from server?
+    - is this correctly polling?
+- Build system
+- Website / upload scripts (see OSKAR)
+- Basic doc (on the web)
+  - Install guide
+  - User guide
+
+	

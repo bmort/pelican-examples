@@ -18,6 +18,7 @@ class StreamDataChunker : public pelican::AbstractChunker
     private:
         quint64 chunkSize_;
         quint64 bytesRead_;
+        int chunkCounter_;
 };
 
 namespace pelican {

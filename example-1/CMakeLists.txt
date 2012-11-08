@@ -32,6 +32,28 @@ target_link_libraries(${name}
     ${QT_QTXML_LIBRARY}
     ${QT_QTNETWORK_LIBRARY})
 
+set(name serviceEmulator)
+add_executable(${name} 
+    emulator/mainServiceEmulator.cpp 
+    emulator/ServiceDataEmulator.cpp)
+target_link_libraries(${name}
+    ${PELICAN_LIBRARY}
+    ${PELICAN_TESTUTILS_LIBRARY}
+    ${QT_QTCORE_LIBRARY}
+    ${QT_QTXML_LIBRARY}
+    ${QT_QTNETWORK_LIBRARY})
+
+set(name streamEmulator)
+add_executable(${name} 
+    emulator/mainStreamEmulator.cpp 
+    emulator/StreamDataEmulator.cpp)
+target_link_libraries(${name}
+    ${PELICAN_LIBRARY}
+    ${PELICAN_TESTUTILS_LIBRARY}
+    ${QT_QTCORE_LIBRARY}
+    ${QT_QTXML_LIBRARY}
+    ${QT_QTNETWORK_LIBRARY})
+
 # Build the server binary.
 set(name server)
 add_executable(${name} 

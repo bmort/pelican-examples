@@ -28,7 +28,6 @@ int main(int argc, char** argv)
 
         PelicanServer server(&config);
 //        server.setVerbosity(10000);
-//        server.setVerbosity(0);
 
         server.addStreamChunker("StreamDataChunker");
         server.addServiceChunker("ServiceDataChunker");

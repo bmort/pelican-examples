@@ -6,7 +6,7 @@
 using namespace std;
 
 ServiceDataChunker::ServiceDataChunker(const pelican::ConfigNode& config)
-: AbstractChunker(config), bytesRead_(0)
+: AbstractChunker(config), bytesRead_(0), chunkCounter_(0)
 {
     // Set the packet size and number of packets to be placed in a chunk
     // from the configuration.
@@ -29,6 +29,7 @@ QIODevice* ServiceDataChunker::newDevice()
 
 void ServiceDataChunker::next(QIODevice* device)
 {
+    qDebug() << "ServiceDataChunker::next() [" << chunkCounter_++ << "]";
     QUdpSocket* socket = static_cast<QUdpSocket*>(device);
     bytesRead_ = 0;
 

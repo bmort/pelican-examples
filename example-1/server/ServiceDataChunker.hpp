@@ -18,6 +18,7 @@ class ServiceDataChunker : public pelican::AbstractChunker
         quint64 packetSize_;
         int packets_;
         quint64 bytesRead_;
+        int chunkCounter_;
 };
 
 namespace pelican {

@@ -3,6 +3,8 @@
 #include <cmath>
 #include <iostream>
 
+using namespace std;
+
 StreamDataEmulator::StreamDataEmulator(const pelican::ConfigNode& config)
 : AbstractUdpEmulator(config), packetCounter_(0), totalSamples_(0)
 {
@@ -13,7 +15,7 @@ StreamDataEmulator::StreamDataEmulator(const pelican::ConfigNode& config)
     nPackets_       = config.getOption("data", "numPackets", "-1").toInt();
 
     // Set the packet size in bytes (+32 for the header).
-    packet_.resize(numSamples_ * sizeof(float) + sizeof(32));
+    packet_.resize(numSamples_ * sizeof(float) + 32);
 
     // Set constant parts of the packet header data
     char* ptr = packet_.data();
@@ -45,7 +47,8 @@ void StreamDataEmulator::getPacketData(char*& ptr, unsigned long& size)
         reinterpret_cast<float*>(data)[i] = value;
     }
 
-    qDebug() << "Stream: Bytes sent = " << size << " (total = "
+    qDebug() << "Stream: [" << packetCounter_ << "] Bytes sent = " << size
+             << " (total = "
              << size * packetCounter_ << ")";
 
     ++packetCounter_;
@@ -54,7 +57,10 @@ void StreamDataEmulator::getPacketData(char*& ptr, unsigned long& size)
 
 void StreamDataEmulator::emulationFinished()
 {
-    qDebug() << "StreamDataEmulator::emulationFinished()";
+    cout << "StreamDataEmulator::emulationFinished()" << endl;
+    cout << " -- Packets sent = " << packetCounter_ << endl;
+    cout << " -- Packet size  = " << packet_.size() << endl;
+    cout << " -- Total bytes sent = " << packetCounter_ * packet_.size() <<  endl;
 }
 
 int StreamDataEmulator::nPackets()

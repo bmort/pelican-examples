@@ -15,7 +15,7 @@
         <chunkers>
             <StreamDataChunker>
                 <!-- packet of n floats + 32 byte header -->
-                <data type="StreamData" packetSize="4032" packets="5" /> 
+                <data type="StreamData" packetSize="4032" packets="1" /> 
                 <connection host="127.0.0.1" port="2001" />
             </StreamDataChunker>
             <ServiceDataChunker>

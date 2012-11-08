@@ -7,7 +7,7 @@ using namespace std;
 
 
 StreamDataChunker::StreamDataChunker(const pelican::ConfigNode& config)
-: AbstractChunker(config), chunkSize_(0), bytesRead_(0)
+: AbstractChunker(config), chunkSize_(0), bytesRead_(0), chunkCounter_(0)
 {
     // The host, port and data type are set in the base class.
 
@@ -31,6 +31,8 @@ QIODevice* StreamDataChunker::newDevice()
 
 void StreamDataChunker::next(QIODevice* device)
 {
+    qDebug() << "StreamDataChunker::next() [" << chunkCounter_++ << "]";
+
     QUdpSocket* socket = static_cast<QUdpSocket*>(device);
     bytesRead_ = 0;
 
