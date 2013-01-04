@@ -13,6 +13,7 @@ add_definitions(-g)
 add_definitions(-Wall)
 add_definitions(-pedantic)
 #add_definitions(-std=c99)
+add_definitions(-Wno-long-long)
 
 include_directories(${CMAKE_SOURCE_DIR})
 include_directories(${CMAKE_SOURCE_DIR}/emulator)

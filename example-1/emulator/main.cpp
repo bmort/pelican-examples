@@ -40,8 +40,7 @@ int main(int argc, char** argv)
     );
     EmulatorDriver streamDriver(new StreamDataEmulator(stream_config));
 
-
-//    QObject::connect(&streamDriver, SIGNAL(finished()), &app, SLOT(quit()));
+    QObject::connect(&streamDriver, SIGNAL(finished()), &app, SLOT(quit()));
 
     return app.exec();
 }

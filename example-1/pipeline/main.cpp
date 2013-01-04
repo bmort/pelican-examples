@@ -24,7 +24,11 @@ int main(int argc, char** argv)
     {
         PipelineApplication pApp(argc, argv);
         pApp.registerPipeline(new Pipeline);
+
+        // FIXME if the data client is not set and the pipeline is started
+        // (i.e. commend out the line below) the pipeline app segfaults!
         pApp.setDataClient("PelicanServerClient");
+
         pApp.start();
     }
     catch (const QString& err)
