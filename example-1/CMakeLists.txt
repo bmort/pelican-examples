@@ -15,10 +15,11 @@ add_definitions(-pedantic)
 #add_definitions(-std=c99)
 add_definitions(-Wno-long-long)
 
-include_directories(${CMAKE_SOURCE_DIR})
-include_directories(${CMAKE_SOURCE_DIR}/emulator)
-include_directories(${CMAKE_SOURCE_DIR}/pipeline)
-include_directories(${CMAKE_SOURCE_DIR}/server)
+include_directories(${PROJECT_SOURCE_DIR})
+include_directories(${PROJECT_SOURCE_DIR}/emulator)
+include_directories(${PROJECT_SOURCE_DIR}/pipeline)
+include_directories(${PROJECT_SOURCE_DIR}/server)
+include_directories(${PELICAN_INCLUDE_DIR})
 
 # Build the emulator binary.
 set(name emulator)
